@@ -119,7 +119,7 @@ public class Pengujian extends AppCompatActivity {
                                 choosePhotoFromGallary();
                                 break;
                             case 1:
-                                takePhotoFromCamera();
+                                selesai();
                                 break;
                         }
                     }
@@ -134,7 +134,7 @@ public class Pengujian extends AppCompatActivity {
         startActivityForResult(galleryIntent, GALLERY);
     }
 
-    private void takePhotoFromCamera() {
+    private void selesai() {
         finish();
     }
 
@@ -142,112 +142,49 @@ public class Pengujian extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == this.RESULT_CANCELED) {
-            return;
-        }
+
         if (requestCode == GALLERY) {
-            if (data != null) {
-                Uri contentURI = data.getData();
+
+
                 try {
 
                     if (Integer.parseInt(url1.getText().toString())==1){
+                        Uri contentURI = data.getData();
                         Bitmap bitmap1 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), contentURI);
                         img1.setImageBitmap(bitmap1);
+                        url1.setText("0");
+                        Log.i("OKE","Masuk 1");
                     } else  if (Integer.parseInt(url2.getText().toString())==2){
-                        Bitmap bitmap2 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), contentURI);
+                        Uri contentURI2 = data.getData();
+                        Bitmap bitmap2 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), contentURI2);
                         img2.setImageBitmap(bitmap2);
+                        url2.setText("0");
+                        Log.i("OKE","Masuk 2");
                        // url2.setText(path);
                     } else if (Integer.parseInt(url3.getText().toString())==3){
-                        Bitmap bitmap3 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), contentURI);
+                        Uri contentURI3 = data.getData();
+                        Bitmap bitmap3 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), contentURI3);
                         img3.setImageBitmap(bitmap3);
+                        url3.setText("0");
+                        Log.i("OKE","Masuk 3");
                         //url2.setText(path);
                     } else if (Integer.parseInt(url4.getText().toString())==4){
-                        Bitmap bitmap4 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), contentURI);
+                        Uri contentURI4 = data.getData();
+                        Bitmap bitmap4 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), contentURI4);
                         img4.setImageBitmap(bitmap4);
+                        url4.setText("0");
+                        Log.i("OKE","Masuk 4");
                        // url2.setText(path);
                     }else {
                         Log.d("Gagal Get Path ","");
-                        finish();
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
-                    Toast.makeText(Pengujian.this, "Failed!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Pengujian.this, "Get Picture Failed!", Toast.LENGTH_SHORT).show();
                 }
-            }
 
-        } else if (requestCode == CAMERA) {
-            Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
-           // imageview1.setImageBitmap(thumbnail);
-            saveImage(thumbnail);
-            Toast.makeText(Pengujian.this, "Image Saved!", Toast.LENGTH_SHORT).show();
-            widthAwal = thumbnail.getWidth();
-            heightAwal = thumbnail.getHeight();
-            width.setText("" + widthAwal);
-            height.setText("" + heightAwal);
-           // width.setEnabled(false);
-           // height.setEnabled(false);
 
         }
-    }
-
-    public String saveImage(Bitmap myBitmap) {
-        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        myBitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-        Bitmap decoded = BitmapFactory.decodeStream(new ByteArrayInputStream(bytes.toByteArray()));
-
-        File wallpaperDirectory = new File(
-                Environment.getExternalStorageDirectory() + IMAGE_DIRECTORY);
-        // have the object build the directory structure, if needed.
-        if (!wallpaperDirectory.exists()) {
-            wallpaperDirectory.mkdirs();
-        }
-
-        try {
-            String namePict = "dificam" + Calendar.getInstance().getTimeInMillis() + ".jpg";
-            File f = new File(wallpaperDirectory, namePict);
-
-            ImageData x = new ImageData();
-            //x.setImage(namePict);
-             //setImage = namePict;
-            String imagePath=""+IMAGE_DIRECTORY+"/"+namePict;
-            Bitmap bmm = BitmapFactory.decodeFile(imagePath);
-            img1.setImageBitmap(bmm);
-
-            f.createNewFile();
-            FileOutputStream fo = new FileOutputStream(f);
-            fo.write(bytes.toByteArray());
-            MediaScannerConnection.scanFile(this,
-                    new String[]{f.getPath()},
-                    new String[]{"image/jpeg"}, null);
-            String link = f.getPath();
-            //url.setText(name);
-            if ((getAllurl()=="1")&&(url1.getText().toString()=="1")){
-                url1.setText(link);
-            } else if ((getAllurl()=="2")&&(url2.getText().toString()=="2")){
-                url2.setText(link);
-            } else if ((getAllurl()=="3")&&(url2.getText().toString()=="3")){
-                url2.setText(link);
-            }else if ((getAllurl()=="4")&&(url2.getText().toString()=="4")){
-                url2.setText(link);
-            }else {
-                Log.d("Gagal Get Path ","");
-            }
-            fo.close();
-            Log.d("TAG", "File Saved::--->" + f.getAbsolutePath());
-
-
-            return f.getAbsolutePath();
-        } catch (IOException e1) {
-            e1.printStackTrace();
-        }
-        return "";
-    }
-    public String getAllurl() {
-        return allurl;
-    }
-
-    public void setAllurl(String allurl) {
-        this.allurl = allurl;
     }
 
 }

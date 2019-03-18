@@ -147,53 +147,62 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:text="Identifiksi"
         app:layout_constraintEnd_toEndOf="@+id/btn_img4"
+        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="@+id/btn_img3"
         app:layout_constraintTop_toBottomOf="@+id/btn_img3" />
-
 
 
     <EditText
         android:id="@+id/link1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="link1"
-        android:visibility="gone"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="16dp"
+        android:layout_marginTop="8dp"
+        android:text="0"
+        android:textSize="8sp"
+        android:visibility="visible"
+        app:layout_constraintStart_toEndOf="@+id/btn_startpengujian"
+        app:layout_constraintTop_toBottomOf="@+id/btn_startpengujian"
         tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/link2"
-        android:layout_width="34dp"
-        android:layout_height="37dp"
-        android:text="link2"
-        android:visibility="gone"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="0"
+        android:textSize="8sp"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="@+id/link1"
+        app:layout_constraintTop_toBottomOf="@+id/link1"
         tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/link3"
-        android:layout_width="34dp"
-        android:layout_height="37dp"
-        android:text="link3"
-        android:visibility="gone"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="16dp" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textSize="8sp"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="@+id/link2"
+        app:layout_constraintTop_toBottomOf="@+id/link2"
+        tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/link4"
-        android:layout_width="34dp"
-        android:layout_height="37dp"
-        android:text="link4"
-        android:visibility="gone"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="0"
+        android:textSize="8sp"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="@+id/link3"
+        app:layout_constraintTop_toBottomOf="@+id/link3"
         tools:ignore="MissingConstraints" />
 
 </android.support.constraint.ConstraintLayout>
