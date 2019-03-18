@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_data_center"
+            android:icon="@drawable/ic_menu_send"
+            android:title="Data Center" />
+        <item
+            android:id="@+id/nav_bobot"
+            android:icon="@drawable/ic_menu_send"
+            android:title="Data bobot" />
+    </group>
+
+    <item android:title="Data Pelatihan">
+        <menu>
+            <item
+                android:id="@+id/nav_reload_data"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Reload Data" />
+        </menu>
+    </item>
+
+
+</menu>
