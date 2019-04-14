@@ -12,71 +12,38 @@
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="44dp"
-        android:text="Pengujian"
-        android:textSize="20dp"
-        app:layout_constraintStart_toStartOf="@+id/editText4"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:text="Nilai Spread"
-        app:layout_constraintBaseline_toBaselineOf="@+id/editText4"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/editText4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="14dp"
-        android:layout_marginBottom="22dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text=""
-        app:layout_constraintBottom_toTopOf="@+id/textView8"
-        app:layout_constraintStart_toEndOf="@+id/textView8" />
-
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="152dp"
-        android:text="Nilai Threshold"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="sans-serif-black"
+        android:text="PENGUJIAN"
+        android:textAppearance="@android:style/TextAppearance.Holo.Large"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/editText5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="@+id/editText4"
-        app:layout_constraintTop_toBottomOf="@+id/editText4" />
 
     <ImageView
         android:id="@+id/img_1"
         android:layout_width="130dp"
         android:layout_height="100dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
+        android:paddingLeft="20dp"
         app:layout_constraintBottom_toTopOf="@+id/btn_img1"
-        app:layout_constraintStart_toStartOf="@+id/textView8"
-        app:layout_constraintTop_toBottomOf="@+id/editText5"
+        app:layout_constraintEnd_toStartOf="@+id/img_2"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_menu_camera" />
 
     <Button
         android:id="@+id/btn_img1"
         android:layout_width="130dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
+        android:paddingLeft="20dp"
         android:text="Pilih Gambar"
         app:layout_constraintStart_toStartOf="@+id/img_1"
         app:layout_constraintTop_toBottomOf="@+id/img_1" />
@@ -85,13 +52,16 @@
         android:id="@+id/img_2"
         android:layout_width="130dp"
         android:layout_height="100dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="92dp"
+        android:layout_marginTop="100dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:paddingRight="20dp"
         app:layout_constraintBottom_toTopOf="@+id/btn_img2"
-        app:layout_constraintEnd_toEndOf="@+id/editText5"
-        app:layout_constraintTop_toBottomOf="@+id/editText5"
-        app:layout_constraintVertical_chainStyle="spread"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/img_1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="spread_inside"
         app:srcCompat="@drawable/ic_menu_camera" />
 
     <Button
@@ -100,6 +70,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:paddingRight="20dp"
         android:text="PILIH GAMBAR"
         app:layout_constraintEnd_toEndOf="@+id/img_2"
         app:layout_constraintTop_toBottomOf="@+id/img_2" />
@@ -108,8 +79,8 @@
         android:id="@+id/img_3"
         android:layout_width="130dp"
         android:layout_height="100dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="24dp"
+        android:paddingLeft="20dp"
         app:layout_constraintStart_toStartOf="@+id/img_1"
         app:layout_constraintTop_toBottomOf="@+id/btn_img1"
         app:srcCompat="@drawable/ic_menu_camera" />
@@ -118,7 +89,8 @@
         android:id="@+id/btn_img3"
         android:layout_width="130dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="36dp"
+        android:paddingLeft="20dp"
         android:text="PILIH GAMBAR"
         app:layout_constraintStart_toStartOf="@+id/btn_img1"
         app:layout_constraintTop_toBottomOf="@+id/img_3" />
@@ -127,8 +99,8 @@
         android:id="@+id/img_4"
         android:layout_width="130dp"
         android:layout_height="100dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginTop="28dp"
+        android:paddingRight="20dp"
         app:layout_constraintEnd_toEndOf="@+id/img_2"
         app:layout_constraintTop_toBottomOf="@+id/btn_img2"
         app:srcCompat="@drawable/ic_menu_camera" />
@@ -137,7 +109,8 @@
         android:id="@+id/btn_img4"
         android:layout_width="130dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="36dp"
+        android:paddingRight="20dp"
         android:text="PILIH GAMBAR"
         app:layout_constraintEnd_toEndOf="@+id/btn_img2"
         app:layout_constraintTop_toBottomOf="@+id/img_4" />
@@ -147,14 +120,33 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="Identifiksi"
-        app:layout_constraintEnd_toEndOf="@+id/btn_img4"
-        app:layout_constraintHorizontal_bias="0.508"
-        app:layout_constraintStart_toStartOf="@+id/btn_img3"
-        app:layout_constraintTop_toBottomOf="@+id/btn_img3" />
+        android:layout_marginBottom="8dp"
+        android:text="identifikasi"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_reload" />
 
+
+    <Button
+        android:id="@+id/btn_reload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="reload data"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn_clear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Clear Data"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.421"
+        app:layout_constraintStart_toEndOf="@+id/btn_startpengujian" />
 
     <EditText
         android:id="@+id/link1"
@@ -163,7 +155,7 @@
         android:layout_marginTop="8dp"
         android:text="0"
         android:textSize="8sp"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintStart_toEndOf="@+id/btn_startpengujian"
         app:layout_constraintTop_toBottomOf="@+id/btn_startpengujian"
         tools:ignore="MissingConstraints" />
@@ -176,7 +168,7 @@
         android:layout_marginTop="8dp"
         android:text="0"
         android:textSize="8sp"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="@+id/link1"
         app:layout_constraintTop_toBottomOf="@+id/link1"
         tools:ignore="MissingConstraints" />
@@ -187,7 +179,7 @@
         android:layout_height="wrap_content"
         android:text="0"
         android:textSize="8sp"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="@+id/link2"
         app:layout_constraintTop_toBottomOf="@+id/link2"
         tools:ignore="MissingConstraints" />
@@ -200,7 +192,7 @@
         android:layout_marginTop="8dp"
         android:text="0"
         android:textSize="8sp"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="@+id/link3"
         app:layout_constraintTop_toBottomOf="@+id/link3"
         tools:ignore="MissingConstraints" />
