@@ -608,19 +608,21 @@ public class Pengujian extends AppCompatActivity {
                 if ((RR1[i][j]==0)&&(RR2[i][j]==0)&&(RR3[i][j]==0)&&(RR4[i][j]==0)){
                     sumr=0;
                 }else {
-                    sumr=fs.pembulatan4Angka((RR1[i][j]+RR2[i][j]+RR3[i][j]+RR4[i][j])/4);
+                    sumr=((RR1[i][j]+RR2[i][j]+RR3[i][j]+RR4[i][j])/4);
+                    //Log.d("nilai sumr",""+sumr);
                 }
 
                 if ((GG1[i][j]==0)&&(GG2[i][j]==0)&&(GG3[i][j]==0)&&(GG4[i][j]==0)){
                     sumg=0;
                 }else {
-                    sumg=fs.pembulatan4Angka((GG1[i][j]+GG2[i][j])+(GG3[i][j]+GG4[i][j])/4);
+                    sumg=((GG1[i][j]+GG2[i][j])+(GG3[i][j]+GG4[i][j])/4);
+                  //  Log.d("nilai sumg",""+sumg);
                 }
 
                 if ((BB1[i][j]==0)&&(BB2[i][j]==0)&&(BB3[i][j]==0)&&(BB4[i][j]==0)){
                     sumb=0;
                 }else {
-                    sumb=fs.pembulatan4Angka((BB1[i][j]+BB2[i][j])+(BB3[i][j]+BB4[i][j])/4);
+                    sumb=((BB1[i][j]+BB2[i][j])+(BB3[i][j]+BB4[i][j])/4);
                 }
 
                 sumR[i][j] = sumr;
@@ -648,19 +650,19 @@ public class Pengujian extends AppCompatActivity {
                 if((sumR[i][j]==0.0)){
                     r[i][j]=0;
                 }else {
-                    r[i][j]=fs.pembulatan4Angka(((sumR[i][j])/(sumR[i][j]+sumG[i][j]+sumB[i][j])));
+                    r[i][j]=(((sumR[i][j])/(sumR[i][j]+sumG[i][j]+sumB[i][j])));
                 }
 
                 if((sumG[i][j]==0.0)){
                     g[i][j]=0;
                 }else {
-                    g[i][j]=fs.pembulatan4Angka(((sumG[i][j])/(sumR[i][j]+sumG[i][j]+sumB[i][j])));
+                    g[i][j]=(((sumG[i][j])/(sumR[i][j]+sumG[i][j]+sumB[i][j])));
                 }
 
                 if((sumB[i][j]==0.0)){
                     b[i][j]=0;
                 }else {
-                    b[i][j]=fs.pembulatan4Angka(((sumB[i][j])/(sumR[i][j]+sumG[i][j]+sumB[i][j])));
+                    b[i][j]=(((sumB[i][j])/(sumR[i][j]+sumG[i][j]+sumB[i][j])));
                 }
 
             }
@@ -693,7 +695,7 @@ public class Pengujian extends AppCompatActivity {
                 if (v[i][j] == 0){
                     s[i][j] = 0;
                 }else{
-                    s[i][j] = fs.pembulatan4Angka(1- (v_min[i][j]/v[i][j]));
+                    s[i][j] = (1- (v_min[i][j]/v[i][j]));
                 }
 
                 //hitung nilai H
@@ -701,11 +703,11 @@ public class Pengujian extends AppCompatActivity {
                     h[i][j] = 0;
                 }
                 else if( v[i][j] == r[i][j]){
-                    h[i][j] = fs.pembulatan4Angka(60 * (0+((g[i][j]-b[i][j])/(s[i][j]*v[i][j]))));
+                    h[i][j] = (60 * (0+((g[i][j]-b[i][j])/(s[i][j]*v[i][j]))));
                 }else if (v[i][j] == g[i][j]){
-                    h[i][j] = fs.pembulatan4Angka(60 * (2+((b[i][j]-r[i][j])/(s[i][j]*v[i][j]))));
+                    h[i][j] = (60 * (2+((b[i][j]-r[i][j])/(s[i][j]*v[i][j]))));
                 } else if (v[i][j] == b[i][j]){
-                    h[i][j] = fs.pembulatan4Angka(60 * (4+((r[i][j]-g[i][j])/(s[i][j]*v[i][j]))));
+                    h[i][j] = (60 * (4+((r[i][j]-g[i][j])/(s[i][j]*v[i][j]))));
                 }else {
                     h[i][j] = 0;
                 }
@@ -730,9 +732,9 @@ public class Pengujian extends AppCompatActivity {
         for (int i = 0; i < width; i++) {
 
             for (int j = 0; j < height; j++) {
-                sumH = fs.pembulatan4Angka(sumH+h[i][j]);
-                sumS = fs.pembulatan4Angka(sumS+s[i][j]);
-                sumV = fs.pembulatan4Angka(sumV+v[i][j]);
+                sumH = (sumH+h[i][j]);
+                sumS = (sumS+s[i][j]);
+                sumV = (sumV+v[i][j]);
             }
         }
 
@@ -742,9 +744,9 @@ public class Pengujian extends AppCompatActivity {
         //System.out.println("sumS="+sumS);
         //System.out.println("sumV="+sumV);
 
-        double finalH= fs.pembulatan4Angka(sumH/(width*height));
-        double finalS= fs.pembulatan4Angka(sumS/(width*height));
-        double finalV= fs.pembulatan4Angka(sumV/(width*height));
+        double finalH= (sumH/(width*height));
+        double finalS= (sumS/(width*height));
+        double finalV= (sumV/(width*height));
 
         //pengujian(finalH,finalS,finalV);
 
@@ -819,17 +821,17 @@ public class Pengujian extends AppCompatActivity {
 
             for (int i = 0; i < lengthData; i++) {
                 for (int j = 0; j < 1; j++) {
-                    euc[i][0]=pembulatan(Math.sqrt(
+                    euc[i][0]=(Math.sqrt(
                             Math.pow((h-random[0][0]),pangkat ) +
                                     Math.pow((s-random[0][1]),pangkat ) +
                                     Math.pow((v-random[0][2]),pangkat )  ));
 
-                    euc[i][1]=pembulatan(Math.sqrt(
+                    euc[i][1]=(Math.sqrt(
                             Math.pow((h-random[1][0]),pangkat ) +
                                     Math.pow((s-random[1][1]),pangkat ) +
                                     Math.pow((v-random[1][2]),pangkat )  ));
 
-                    euc[i][2]=pembulatan(Math.sqrt(
+                    euc[i][2]=(Math.sqrt(
                             Math.pow((h-random[2][0]),pangkat ) +
                                     Math.pow((s-random[2][1]),pangkat ) +
                                     Math.pow((v-random[2][2]),pangkat ) ));
@@ -843,9 +845,9 @@ public class Pengujian extends AppCompatActivity {
 
             for (int i = 0; i < lengthData; i++) {
                 for (int j = 0; j < 1; j++) {
-                    gaussian[i][0] = pembulatan(Math.exp((-(Math.pow((b1*euc[i][0]),pangkat)))));
-                    gaussian[i][1] = pembulatan(Math.exp((-(Math.pow((b1*euc[i][1]),pangkat)))));
-                    gaussian[i][2] = pembulatan(Math.exp((-(Math.pow((b1*euc[i][2]),pangkat)))));
+                    gaussian[i][0] = (Math.exp((-(Math.pow((b1*euc[i][0]),pangkat)))));
+                    gaussian[i][1] = (Math.exp((-(Math.pow((b1*euc[i][1]),pangkat)))));
+                    gaussian[i][2] = (Math.exp((-(Math.pow((b1*euc[i][2]),pangkat)))));
                 }
             }
 

@@ -9,13 +9,14 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.*;
 
 public interface Api {
 
-    String BASE_URL ="http://192.168.47.17/api-palm/web/";
-    String BASE_URL2 ="http://192.168.100.241/api-palm/web/";
-    String BASE_URL3 ="http://192.168.47.17/api-palm/web/";
-    String BASE_URL4 ="http://192.168.47.17/api-palm/web/";
+    String BASE_URL ="http://alelahosting.000webhostapp.com/api-palm/web/";
+    String BASE_URL2 ="http://alelahosting.000webhostapp.com/api-palm/web/";
+    String BASE_URL3 ="http://alelahosting.000webhostapp.com/api-palm/web/";
+    String BASE_URL4 ="http://alelahosting.000webhostapp.com/api-palm/web/";
 
     @GET("index.php?r=nilai-w/get-nilai-w" )
     Call<List<NilaiW>> getNilaiW();
