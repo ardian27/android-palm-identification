@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
@@ -36,11 +37,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class Pengujian extends AppCompatActivity {
 
 
-    public int GALLERY = 1, CAMERA = 2, widthAwal, heightAwal;
+    public int GALLERY = 100, CAMERA = 2, widthAwal, heightAwal;
     public EditText width, height , spread,threshold,url1,url2,url3,url4;
 
 
-
+    private static final int CAMERA_REQUEST = 1888;
     String allurl;
     public static final String IMAGE_DIRECTORY = "/dificam";
 
@@ -93,6 +94,7 @@ public class Pengujian extends AppCompatActivity {
             public void onClick(View v) {
                 url1.setText("1");
                 showPictureDialog();
+
             }
         });
 
@@ -102,6 +104,9 @@ public class Pengujian extends AppCompatActivity {
             public void onClick(View v) {
                 url2.setText("2");
                 showPictureDialog();
+               // Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+
+               // startActivityForResult(intent, 2);
             }
         });
 
@@ -111,6 +116,9 @@ public class Pengujian extends AppCompatActivity {
             public void onClick(View v) {
                 url3.setText("3");
                 showPictureDialog();
+                //Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+
+               // startActivityForResult(intent, 3);
             }
         });
 
@@ -120,7 +128,9 @@ public class Pengujian extends AppCompatActivity {
             public void onClick(View v) {
                 url4.setText("4");
                 showPictureDialog();
+               // Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
 
+               // startActivityForResult(intent, 4);
 
                 /*clearData();
                 List<com.ah.palmdroid.DB.CenterRandom> centerRandoms = Pengujian.myAppDatabaseCR.myDao().getcenterRandom();
@@ -202,6 +212,151 @@ public class Pengujian extends AppCompatActivity {
 */
             }
         });
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        //saveImage(thumbnail);
+
+        /*widthAwal = thumbnail.getWidth();
+        heightAwal = thumbnail.getHeight();
+        width.setText("" + widthAwal);
+        height.setText("" + heightAwal);
+        width.setEnabled(false);
+        height.setEnabled(false);*/
+
+        if (requestCode == 1) {
+
+            Bitmap bitmap1 = (Bitmap) data.getExtras().get("data");
+            Bitmap bt = getResizedBitmap(bitmap1,300,300);
+            img1.setImageBitmap(bt);
+            Toast.makeText(Pengujian.this, "Image OK!"+requestCode, Toast.LENGTH_SHORT).show();
+            setWidthimage(bt.getWidth());
+            setHeigthimage(bt.getHeight());
+            setArr1(getPixelRfromBitmap(bt));
+            setArg1(getPixelGfromBitmap(bt));
+            setArb1(getPixelBfromBitmap(bt));
+            url1.setText("0");
+
+            Log.i("OKE","Masuk 1");
+
+        } else
+        if (requestCode == 2) {
+
+            Bitmap bitmap2 = (Bitmap) data.getExtras().get("data");
+            Bitmap bt2 = getResizedBitmap(bitmap2,300,300);
+            img2.setImageBitmap(bt2);
+            Toast.makeText(Pengujian.this, "Image OK!"+requestCode, Toast.LENGTH_SHORT).show();
+
+            setArr2(getPixelRfromBitmap(bt2));
+            setArg1(getPixelGfromBitmap(bt2));
+            setArb2(getPixelBfromBitmap(bt2));
+            url2.setText("0");
+
+            Log.i("OKE","Masuk 2");
+
+        } else
+        if (requestCode == 3) {
+
+            Bitmap bitmap3 = (Bitmap) data.getExtras().get("data");
+            Bitmap bt3 = getResizedBitmap(bitmap3,300,300);
+            img3.setImageBitmap(bt3);
+            Toast.makeText(Pengujian.this, "Image OK !"+requestCode, Toast.LENGTH_SHORT).show();
+
+            setArr3(getPixelRfromBitmap(bt3));
+            setArg3(getPixelGfromBitmap(bt3));
+            setArb3(getPixelBfromBitmap(bt3));
+            url3.setText("0");
+
+            Log.i("OKE","Masuk 3");
+
+        } else
+        if (requestCode == 4) {
+
+            Bitmap bitmap4 = (Bitmap) data.getExtras().get("data");
+            Bitmap bt4 = getResizedBitmap(bitmap4,300,300);
+            img4.setImageBitmap(bt4);
+            Toast.makeText(Pengujian.this, "Image OK!"+requestCode, Toast.LENGTH_SHORT).show();
+
+            setArr4(getPixelRfromBitmap(bt4));
+            setArg4(getPixelGfromBitmap(bt4));
+            setArb4(getPixelBfromBitmap(bt4));
+            url4.setText("0");
+
+            Log.i("OKE","Masuk 4");
+
+        }
+
+        if (requestCode == GALLERY) {
+            try {
+
+                if (Integer.parseInt(url1.getText().toString())==1){
+                    Uri contentURI = data.getData();
+                    Bitmap bitmap1 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), contentURI);
+                    img1.setImageBitmap(bitmap1);
+                    setWidthimage(bitmap1.getWidth());
+                    setHeigthimage(bitmap1.getHeight());
+                    setArr1(getPixelRfromBitmap(bitmap1));
+                    setArg1(getPixelGfromBitmap(bitmap1));
+                    setArb1(getPixelBfromBitmap(bitmap1));
+                    url1.setText("0");
+                    Log.i("OKE","Masuk 1");
+                } else  if (Integer.parseInt(url2.getText().toString())==2){
+                    Uri contentURI2 = data.getData();
+                    Bitmap bitmap2 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), contentURI2);
+                    img2.setImageBitmap(bitmap2);
+                    setArr2(getPixelRfromBitmap(bitmap2));
+                    setArg2(getPixelGfromBitmap(bitmap2));
+                    setArb2(getPixelBfromBitmap(bitmap2));
+                    url2.setText("0");
+                    Log.i("OKE","Masuk 2");
+                    // url2.setText(path);
+                } else if (Integer.parseInt(url3.getText().toString())==3){
+                    Uri contentURI3 = data.getData();
+                    Bitmap bitmap3 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), contentURI3);
+                    img3.setImageBitmap(bitmap3);
+                    setArr3(getPixelRfromBitmap(bitmap3));
+                    setArg3(getPixelGfromBitmap(bitmap3));
+                    setArb3(getPixelBfromBitmap(bitmap3));
+                    url3.setText("0");
+                    Log.i("OKE","Masuk 3");
+                    //url2.setText(path);
+                } else if (Integer.parseInt(url4.getText().toString())==4){
+                    Uri contentURI4 = data.getData();
+                    Bitmap bitmap4 = MediaStore.Images.Media.getBitmap(this.getContentResolver(), contentURI4);
+                    img4.setImageBitmap(bitmap4);
+                    setArr4(getPixelRfromBitmap(bitmap4));
+                    setArg4(getPixelGfromBitmap(bitmap4));
+                    setArb4(getPixelBfromBitmap(bitmap4));
+                    url4.setText("0");
+                    Log.i("OKE","Masuk 4");
+                    // url2.setText(path);
+                }else {
+                    Log.d("Gagal Get Path ","");
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+                Toast.makeText(Pengujian.this, "Get Picture Failed!", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+
+    public Bitmap getResizedBitmap(Bitmap bm, int newWidth, int newHeight) {
+        int width = bm.getWidth();
+        int height = bm.getHeight();
+        float scaleWidth = ((float) newWidth) / width;
+        float scaleHeight = ((float) newHeight) / height;
+        // CREATE A MATRIX FOR THE MANIPULATION
+        Matrix matrix = new Matrix();
+        // RESIZE THE BIT MAP
+        matrix.postScale(scaleWidth, scaleHeight);
+
+        // "RECREATE" THE NEW BITMAP
+        Bitmap resizedBitmap = Bitmap.createBitmap(
+                bm, 0, 0, width, height, matrix, false);
+        bm.recycle();
+        return resizedBitmap;
     }
 
     public void clearData(){
@@ -431,7 +586,7 @@ public class Pengujian extends AppCompatActivity {
         pictureDialog.setTitle("Select Action");
         String[] pictureDialogItems = {
                 "Select photo from gallery",
-                "Kembali"};
+                "Take From Camera"};
         pictureDialog.setItems(pictureDialogItems,
                 new DialogInterface.OnClickListener() {
                     @Override
@@ -441,7 +596,25 @@ public class Pengujian extends AppCompatActivity {
                                 choosePhotoFromGallary();
                                 break;
                             case 1:
-                                selesai();
+                                if (Integer.parseInt(url1.getText().toString())==1) {
+                                Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+
+                                startActivityForResult(intent, 1);
+                                } else
+                                if (Integer.parseInt(url2.getText().toString())==2) {
+                                    Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+
+                                    startActivityForResult(intent, 2);
+                                } else
+                                if (Integer.parseInt(url3.getText().toString())==3) {
+                                    Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+
+                                    startActivityForResult(intent, 3);
+                                }if (Integer.parseInt(url4.getText().toString())==4) {
+                                Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+
+                                startActivityForResult(intent, 4);
+                            }
                                 break;
                         }
                     }
@@ -459,7 +632,7 @@ public class Pengujian extends AppCompatActivity {
     private void selesai() {
         finish();
     }
-
+/*
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
@@ -517,7 +690,7 @@ public class Pengujian extends AppCompatActivity {
                 }
         }
     }
-
+*/
     public int [][] getPixelRfromBitmap(Bitmap img){
 
         int [][] pixelsR = new int[300][300];
@@ -565,7 +738,7 @@ public class Pengujian extends AppCompatActivity {
         Log.d("wImage=",""+getWidthimage());
         Log.d("HImage=",""+getHeigthimage());
         FunctionSawit fs = new FunctionSawit();
-        int width=getWidthimage(),  height=getHeigthimage(  );
+        int width=getWidthimage(),  height=getHeigthimage();
 
         double sumR [][]= new double[width][height];
         double sumG [][]= new double[width][height];
@@ -575,6 +748,7 @@ public class Pengujian extends AppCompatActivity {
         int [][]RR2 = getArr2();
         int [][]RR3 = getArr3();
         int [][]RR4 = getArr4();
+
 
         int [][]GG1 = getArg1();
         int [][]GG2 = getArg2();
@@ -611,14 +785,14 @@ public class Pengujian extends AppCompatActivity {
                     sumr=((RR1[i][j]+RR2[i][j]+RR3[i][j]+RR4[i][j])/4);
                     //Log.d("nilai sumr",""+sumr);
                 }
-
+/*
                 if ((GG1[i][j]==0)&&(GG2[i][j]==0)&&(GG3[i][j]==0)&&(GG4[i][j]==0)){
                     sumg=0;
                 }else {
                     sumg=((GG1[i][j]+GG2[i][j])+(GG3[i][j]+GG4[i][j])/4);
                   //  Log.d("nilai sumg",""+sumg);
                 }
-
+*/
                 if ((BB1[i][j]==0)&&(BB2[i][j]==0)&&(BB3[i][j]==0)&&(BB4[i][j]==0)){
                     sumb=0;
                 }else {
@@ -626,7 +800,7 @@ public class Pengujian extends AppCompatActivity {
                 }
 
                 sumR[i][j] = sumr;
-                sumB[i][j] = sumg;
+                //sumB[i][j] = sumg;
                 sumB[i][j] = sumb;
 
             }
@@ -756,6 +930,7 @@ public class Pengujian extends AppCompatActivity {
         Log.d("finalV",""+finalV);
 
         pengujian(finalH,finalS,finalV);
+
 
     }
 
@@ -907,6 +1082,15 @@ public class Pengujian extends AppCompatActivity {
 
 
     public void printGridDouble(double[][] in){
+        for(int i = 0; i < in.length; i++){
+            for(int j = 0; j < in[0].length; j++){
+                Log.d(""+i+":"+j,"="+in[i][j] );
+            }
+
+        }
+    }
+
+    public void printGridInt(int [][] in){
         for(int i = 0; i < in.length; i++){
             for(int j = 0; j < in[0].length; j++){
                 Log.d(""+i+":"+j,"="+in[i][j] );
